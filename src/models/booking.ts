@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema({
-  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurant" },
+const bookingSchema = new mongoose.Schema({
+  appointment: { type: mongoose.Schema.Types.ObjectId, ref: "Appointment" },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  deliveryDetails: {
+  appointmentDetails: {
     email: { type: String, required: true },
     name: { type: String, required: true },
     addressLine1: { type: String, required: true },
@@ -11,7 +11,7 @@ const orderSchema = new mongoose.Schema({
   },
   cartItems: [
     {
-      menuItemId: { type: String, required: true },
+      specialityItemId: { type: String, required: true },
       quantity: { type: Number, required: true },
       name: { type: String, required: true },
     },
@@ -19,10 +19,10 @@ const orderSchema = new mongoose.Schema({
   totalAmount: Number,
   status: {
     type: String,
-    enum: ["placed", "paid", "inProgress", "outForDelivery", "delivered"],
+    enum: ["requested", "confirmed", "inProgress", "completed", "cancelled"],
   },
   createdAt: { type: Date, default: Date.now },
 });
 
-const Order = mongoose.model("Order", orderSchema);
-export default Order;
+const Booking = mongoose.model("Booking", bookingSchema);
+export default Booking;

@@ -18,26 +18,26 @@ export const validateMyUserRequest = [
     handleValidationErrors,
 ];
 
-export const validateMyRestaurantRequest = [
-  body("restaurantName").notEmpty().withMessage("Restaurant name is required"),
+export const validateMyAppointmentRequest = [
+  body("appointmentName").notEmpty().withMessage("Appointment name is required"),
   body("city").notEmpty().withMessage("City is required"),
   body("country").notEmpty().withMessage("Country is required"),
-  body("deliveryPrice")
+  body("appointmentFee")
     .isFloat({ min: 0 })
-    .withMessage("Delivery price must be a positive number"),
-  body("estimatedDeliveryTime")
+    .withMessage("Appointment fee must be a positive number"),
+  body("appointmentTime")
     .isInt({ min: 0 })
     .withMessage("Estimated delivery time must be a postivie integar"),
-  body("cuisines")
+  body("specializations")
     .isArray()
-    .withMessage("Cuisines must be an array")
+    .withMessage("Specializations must be an array")
     .not()
     .isEmpty()
-    .withMessage("Cuisines array cannot be empty"),
-  body("menuItems").isArray().withMessage("Menu items must be an array"),
-  body("menuItems.*.name").notEmpty().withMessage("Menu item name is required"),
-  body("menuItems.*.price")
+    .withMessage("Specializations array cannot be empty"),
+  body("specialityItems").isArray().withMessage("Speciality items must be an array"),
+  body("specialityItems.*.name").notEmpty().withMessage("Speciality item name is required"),
+  body("specialityItems.*.price")
     .isFloat({ min: 0 })
-    .withMessage("Menu item price is required and must be a postive number"),
+    .withMessage("Speciality item price is required and must be a postive number"),
   handleValidationErrors,
 ];
